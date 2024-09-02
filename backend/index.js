@@ -92,6 +92,23 @@ app.put('/books/:id',async (request, response) => {
     }      
 });
 
+app.delete('/books/:id', async (request, response) => {
+    try{
+
+        const { id } = request.params;
+
+        const book = await book.findByIdAndDelete(id);
+        if (!result) {
+            return response.status(404).json({ message: ' Book not fount'})
+        }
+        return response.status(200).send({ message: 'Book deleted successfully'});
+    }  catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message});
+    }     
+
+});
+
 mangoose
   .connect(mongoDBURL)
   .then(() => {
