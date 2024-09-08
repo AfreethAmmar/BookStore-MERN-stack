@@ -11,12 +11,12 @@ import BooksCard from '../components/home/BooksCard';
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState('table');
+ 
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/books')
+      .get('http://localhost:5556/books')
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
